@@ -9,6 +9,17 @@ SRC = main.c \
 	  strlen/03_bigger_str_test.c \
 	  printf/00_launcher.c \
 	  printf/01_printf_basic_test.c \
+	  printf/02_printf_char_test.c \
+	  printf/03_printf_digit_test.c \
+	  printf/04_printf_int_test.c \
+	  printf/05_printf_hex_u_test.c \
+	  printf/06_printf_hex_l_test.c \
+	  printf/07_printf_u_int_test.c \
+	  printf/08_printf_percentage_test.c \
+	  printf/09_printf_pointer_test.c \
+	  printf/10_printf_null_test.c \
+	  printf/11_printf_invalid_test.c \
+	  printf/12_printf_multiple_test.c \
 	  ../framework/free_tests.c \
 	  ../framework/load_tests.c \
 	  ../framework/launch_tests.c
