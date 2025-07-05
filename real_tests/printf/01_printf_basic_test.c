@@ -1,10 +1,10 @@
-#include "strlen.h"
+#include "printf.h"
 
-int basic_test(void)
+int printf_basic_test(void)
 {
 	char *str = "Hello, World!";
 	int expected_length = 13;
-	int actual_length = ft_strlen(str);
+	int actual_length = ft_printf("%s", str);
 
 	if (actual_length == expected_length)
 		return (0); // Test passed

@@ -28,9 +28,9 @@ int launch_tests(t_unit_test **tests)
 		}
 		else if (pid == 0)
 		{
-			write(1, "Running test: ", 15);
-			write(1, current->name, ft_strlen(current->name));
-			write(1, "\n", 1);
+			// write(1, "Running test: ", 15);
+			// write(1, current->name, ft_strlen(current->name));
+			// write(1, "\n", 1);
 			result = current->function();
 			if (result == 0)
 			{
@@ -62,7 +62,7 @@ int launch_tests(t_unit_test **tests)
 			}
 			else
 			{
-				ft_printf("My status: %d\n", status);
+				// ft_printf("My status: %d\n", status);
 				success++;
 			}
 			// if(WTERMSIG(status))

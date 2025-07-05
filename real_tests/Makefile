@@ -7,6 +7,8 @@ SRC = main.c \
 	  strlen/01_basic_test.c \
 	  strlen/02_null_test.c \
 	  strlen/03_bigger_str_test.c \
+	  printf/00_launcher.c \
+	  printf/01_printf_basic_test.c \
 	  ../framework/free_tests.c \
 	  ../framework/load_tests.c \
 	  ../framework/launch_tests.c

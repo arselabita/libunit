@@ -2,7 +2,7 @@
 
 int strlen_launcher(void)
 {
-	write(1, "Launching strlen tests...\n", 26);
+	// write(1, "Launching strlen tests...\n", 26);
 	t_unit_test *testlist;
 	ft_bzero(&testlist, sizeof(t_unit_test *));
 	load_tests(&testlist, "Basic test", &basic_test);
