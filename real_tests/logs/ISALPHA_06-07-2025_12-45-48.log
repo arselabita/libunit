@@ -1,0 +1,4 @@
+ISALPHA: Basic test : [OK]
+ISALPHA: Error test : [OK]
+ISALPHA: Negative input test : [OK]
+ISALPHA: 3/3 tests passed

@@ -3,5 +3,5 @@
 int null_test(void)
 {
 	ft_strlen(NULL);
-	return (0);
+	return (TEST_SUCCESS); // Should not reach here
 }

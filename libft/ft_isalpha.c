@@ -11,7 +11,8 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-//#include <stdio.h>
+#include <stdio.h>
+#include <ctype.h>
 
 int	ft_isalpha(int c)
 {
@@ -19,12 +20,13 @@ int	ft_isalpha(int c)
 		return (1);
 	return (0);
 }
-/*
-int	main()
+
+/* int	main()
 {
-	printf("%d\n", ft_isalpha('A'));
-	printf("%d\n", ft_isalpha('Z'));
-	printf("%d\n", ft_isalpha('1'));
-	printf("%d\n", ft_isalpha('@'));
+	printf("%d\n", ft_isalpha('5'));
+	printf("%d\n", isalpha('5'));
+	// printf("%d\n", ft_isalpha('Z'));
+	// printf("%d\n", ft_isalpha('1'));
+	// printf("%d\n", ft_isalpha('@'));
 	return (0);
-}*/
+} */

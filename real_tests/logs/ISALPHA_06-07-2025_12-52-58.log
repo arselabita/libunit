@@ -1,0 +1,4 @@
+ISALPHA: Basic test : [OK]
+ISALPHA: Non Alpha test : [KO]
+ISALPHA: Number input test : [KO]
+ISALPHA: 1/3 tests passed

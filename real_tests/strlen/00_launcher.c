@@ -2,11 +2,15 @@
 
 int strlen_launcher(void)
 {
-	// write(1, "Launching strlen tests...\n", 26);
+	int exit_code;
+
+	exit_code = 0;
 	t_unit_test *testlist;
 	ft_bzero(&testlist, sizeof(t_unit_test *));
-	load_tests(&testlist, "Basic test", &basic_test);
-	load_tests(&testlist, "NULL test", &null_test);
-	load_tests(&testlist, "Bigger string test", &bigger_str_test); /* This test won't be loaded */
-	return(launch_tests(&testlist));
+	load_tests(&testlist, "STRLEN", "Basic test", &basic_test);
+	load_tests(&testlist, "STRLEN", "NULL test", &null_test);
+	load_tests(&testlist, "STRLEN", "Bigger string test", &bigger_str_test); /* This test won't be loaded */
+	exit_code = launch_tests(&testlist);
+	free_tests(&testlist);
+	return(exit_code);
 }

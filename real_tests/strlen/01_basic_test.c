@@ -7,7 +7,7 @@ int basic_test(void)
 	int actual_length = ft_strlen(str);
 
 	if (actual_length == expected_length)
-		return (0); // Test passed
+		return (TEST_SUCCESS); // Test passed
 	else
-		return (-1); // Test failed
+		return (TEST_FAILURE); // Test failed
 }

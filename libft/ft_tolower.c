@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-//#include <stdio.h>
+#include <stdio.h>
 
 int	ft_tolower(int c)
 {
@@ -19,7 +19,7 @@ int	ft_tolower(int c)
 		return (c + 32);
 	return (c);
 }
-/*
+/* 
 int	main()
 {
 	int	i;
@@ -32,4 +32,4 @@ int	main()
 		i++;
 	}
 	return (0);
-}*/
+} */

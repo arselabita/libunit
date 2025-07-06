@@ -1,10 +1,7 @@
 #include "libunit.h"
 
-void load_tests(t_unit_test **tests, char *name, int (*function)(void))
+void load_tests(t_unit_test **tests, char *fun_name, char *test_name, int (*function)(void))
 {
-	// write(1, "Loading test:", 13);
-	// write(1, name, ft_strlen(name));
-	// write(1, "\n", 1);
 	t_unit_test *new_test;
 	t_unit_test *current;
 	
@@ -12,7 +9,8 @@ void load_tests(t_unit_test **tests, char *name, int (*function)(void))
 	if (!new_test)
 		return;
 	
-	new_test->name = name;
+	new_test->fun_name = fun_name;
+	new_test->test_name = test_name;
 	new_test->function = function;
 	new_test->next = NULL;
 	

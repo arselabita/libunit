@@ -1,0 +1,10 @@
+TEST: OK test : [OK]
+TEST: SIGSEGV test : [Segmentation fault]
+TEST: KO test : [KO]
+TEST: SIGBUS test : [Bus error]
+TEST: SIGFPE test : [Floating point exception]
+TEST: SIGILL test : [Illegal instruction]
+TEST: SIGPIPE test : [Broken pipe]
+TEST: SIGABRT test : [Aborted]
+TEST: SIGALRM test : [Alarm clock]
+TEST: 1/9 tests passed

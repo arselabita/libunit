@@ -1,0 +1,4 @@
+TOLOWER: Basic test : [OK]
+TOLOWER: Non alpha input test : [OK]
+TOLOWER: Lowercase test : [OK]
+TOLOWER: 3/3 tests passed
