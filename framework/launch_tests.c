@@ -1,132 +1,99 @@
 #include "libunit.h"
 
-static char *generate_log_filename(const char *fun_name)
+static void	run_test_child_process(t_unit_test *test)
 {
-	time_t now = time(NULL);
-	struct tm *t = localtime(&now);
-	char timestamp[32];
-	char *path = "./logs/";
+	int	result;
 
-	// Format: DD-MM-YYYY_HH-MM-SS
-	strftime(timestamp, sizeof(timestamp), "%d-%m-%Y_%H-%M-%S", t);
-
-	// Allocate space for full filename
-	size_t len = strlen(path) + strlen(fun_name) + strlen(timestamp) + 6; // +1 for '_' +4 for ".log" +1 for '\0'
-	char *filename = malloc(len);
-	if (!filename)
-		return NULL;
-
-	snprintf(filename, len, "%s%s_%s.log", path, fun_name, timestamp);
-	return filename;
+	alarm(5);
+	sleep(1);
+	result = test->function();
+	if (result == TEST_SUCCESS)
+		exit(EXIT_SUCCESS);
+	else if (result == TEST_FAILURE)
+		exit(EXIT_FAILURE);
+	else
+		exit(EXIT_FAILURE);
 }
 
-int launch_tests(t_unit_test **tests)
+static void	ft_success_child_process(int status, t_unit_test *test,
+		int *success, int log_fd)
 {
-	t_unit_test *current;
-	int pid;
-	int count;
-	int success;
-	int status;
-	int code;
-	char *fun_name;
-	
-	count = 0;
+	int	exit_code;
+	exit_code = WEXITSTATUS(status);
+	if (exit_code == EXIT_SUCCESS)
+	{
+		ft_print_single_result(test, log_fd, TEST_SUCCESS);
+		(*success)++;
+	}
+	else if (exit_code == EXIT_FAILURE)
+		ft_print_single_result(test, log_fd, TEST_FAILURE);
+	else
+		ft_print_single_result(test, log_fd, TEST_UNKNOWN);
+}
+
+static void	handle_test_result(t_unit_test *test, int status,
+		int *success, int log_fd)
+{
+	int	sig;
+
+	if (WIFSIGNALED(status))
+	{
+		sig = WTERMSIG(status);
+		ft_printf("%s: %s : " RED "[%s]" RESET "\n",
+			test->fun_name, test->test_name, strsignal(sig));
+		dprintf(log_fd, "%s: %s : [%s]\n",
+			test->fun_name, test->test_name, strsignal(sig));
+	}
+	else if (WIFEXITED(status))
+		ft_success_child_process(status, test, success, log_fd);
+	else
+		ft_print_single_result(test, log_fd, TEST_UNKNOWN);
+}
+
+static void	ft_fork(t_unit_test **tests, t_unit_test *current,
+		int log_fd, int *success)
+{
+	pid_t	pid;
+	int		status;
+
+	pid = fork();
 	status = 0;
+	if (pid < 0)
+	{
+		ft_clean(tests, -1, "Fork");
+	}
+	else if (pid == 0)
+		run_test_child_process(current);
+	else
+	{
+		wait(&status);
+		handle_test_result(current, status, success, log_fd);
+	}
+}
+
+int	launch_tests(t_unit_test **tests)
+{
+	t_unit_test	*current;
+	int			count;
+	int			success;
+	int			code;
+	int			log_fd;
+
+	count = 0;
 	success = 0;
 	code = 0;
-	pid = -1;
-	
+	log_fd = -1;
 	if (!tests || !*tests)
-	return (0);
+		return (0);
 	current = *tests;
-	fun_name = current->fun_name;
-	char *log_file = generate_log_filename(current->fun_name);
-	if (!log_file)
-	{
-		write(2, "Failed to create log file\n", 26);
-		free_tests(tests);
-		exit(EXIT_FAILURE);
-	}
-	int log_fd = open(log_file, O_WRONLY | O_CREAT | O_APPEND, 0644);
-	if (log_fd < 0)
-	{
-		write(2, "Failed to open log file\n", 24);
-		free(log_file);
-		free_tests(tests);
-		exit(EXIT_FAILURE);
-	}
-	free(log_file);
+	log_fd = open_log_file(current->fun_name, tests);
 	while (current)
 	{
 		count++;
-		pid = fork();
-		if (pid < 0)
-		{
-			write(2, "Fork failed\n", 12);
-			free_tests(tests);
-			close(log_fd);
-			exit(EXIT_FAILURE);
-		}
-		else if (pid == 0)
-		{
-			alarm(5);
-			sleep(1);
-			int result = current->function();
-			if (result == TEST_SUCCESS)
-				exit(EXIT_SUCCESS);
-			else if (result == TEST_FAILURE)
-				exit(EXIT_FAILURE);
-			else
-				exit(255); // Exit with a custom code for unknown results
-		}
-		else
-		{
-			wait(&status);
-			if(WIFSIGNALED(status))
-			{
-				int sig = WTERMSIG(status);
-				ft_printf("%s: %s : " RED "[%s]" RESET "\n", current->fun_name, current->test_name, strsignal(sig));
-				dprintf(log_fd, "%s: %s : [%s]\n", current->fun_name, current->test_name, strsignal(sig));
-			}
-			else if (WIFEXITED(status))
-			{
-				if (WEXITSTATUS(status) == EXIT_SUCCESS)
-				{
-					printf("%s: %s : " GREEN "[OK]" RESET "\n", current->fun_name, current->test_name);
-					dprintf(log_fd, "%s: %s : [OK]\n", current->fun_name, current->test_name);
-					success++;
-				}
-				else if (WEXITSTATUS(status) == EXIT_FAILURE)
-				{
-					ft_printf("%s: %s : " RED "[KO]" RESET "\n", current->fun_name, current->test_name);
-					dprintf(log_fd, "%s: %s : [KO]\n", current->fun_name, current->test_name);
-				}
-				else
-				{
-					ft_printf("%s: %s : " RED "[UNKNOWN EXIT CODE]" RESET "\n", current->fun_name, current->test_name);
-					dprintf(log_fd, "%s: %s : [UNKNOWN EXIT CODE]\n", current->fun_name, current->test_name);
-				}
-			}
-			else
-			{
-				ft_printf("%s: %s : \033[31m[UNKNOWN]\033[0m\n", current->fun_name, current->test_name);
-				dprintf(log_fd, "%s: %s : [UNKNOWN]\n", current->fun_name, current->test_name);
-			}
-		}
+		ft_fork(tests, current, log_fd, &success);
 		current = current->next;
 	}
-	if (count == success)
-	{
-		ft_printf(GREEN "%d/%d" RESET " tests checked for %s\n", success, count, fun_name);
-		dprintf(log_fd, "%s: %d/%d tests passed\n", fun_name, success, count);
-		code = 0;
-	}
-	else
-	{
-		ft_printf(YELLOW "%d/%d" RESET " tests checked for %s\n", success, count, fun_name);
-		dprintf(log_fd, "%s: %d/%d tests passed\n", fun_name, success, count);
-		code = -1;
-	}
+	code = ft_print_results(count, success, (*tests)->fun_name, log_fd);
 	close(log_fd);
 	return (code);
 }

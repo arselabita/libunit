@@ -20,7 +20,7 @@ int	printf_s_test(void)
 	int		saved_stdout;
 
 	str = "Hello, World!";
-	buffer[100] = {0};
+	ft_bzero(buffer, sizeof(buffer));
 	pipe(pipe_fd);
 	saved_stdout = dup(STDOUT_FILENO);
 	dup2(pipe_fd[1], STDOUT_FILENO);

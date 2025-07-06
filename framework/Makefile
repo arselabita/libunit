@@ -3,7 +3,8 @@ CFLAGS = -Wall -Wextra -Werror
 
 SRC = free_tests.c \
 	  load_tests.c \
-	  launch_tests.c
+	  launch_tests.c \
+	  utils.c \
 
 OBJ = $(SRC:.c=.o)
 NAME = libunit

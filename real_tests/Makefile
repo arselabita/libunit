@@ -32,10 +32,11 @@ SRC = main.c \
 	  toupper/04_digit_test.c\
 	  ../framework/free_tests.c \
 	  ../framework/load_tests.c \
-	  ../framework/launch_tests.c
+	  ../framework/launch_tests.c \
+	  ../framework/utils.c
 
 OBJ = $(SRC:.c=.o)
-NAME = libunit.a
+NAME = libunit
 PRINTF = ../printf/libftprintf.a
 LIBFT = ../libft/libft.a
 
@@ -63,8 +64,8 @@ fclean: clean
 re: fclean
 	make all
 
-real-test: all
-	./libunit.a
+test: all
+	./$(NAME)
 
-.PHONY: all bonus clean fclean re
+.PHONY: all bonus clean fclean re test
 

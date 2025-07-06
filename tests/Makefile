@@ -15,10 +15,11 @@ SRC = main.c \
 	  09_sigalrm_test.c \
 	  ../framework/free_tests.c \
 	  ../framework/load_tests.c \
-	  ../framework/launch_tests.c
+	  ../framework/launch_tests.c \
+	  ../framework/utils.c
 
 OBJ = $(SRC:.c=.o)
-NAME = libunit.a
+NAME = libunit
 PRINTF = ../printf/libftprintf.a
 LIBFT = ../libft/libft.a
 
@@ -47,8 +48,8 @@ re: fclean
 	make all
 
 test: all
-	./libunit.a
+	./$(NAME)
 
-.PHONY: all bonus clean fclean re
+.PHONY: all bonus clean fclean re test
 
 

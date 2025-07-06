@@ -1,13 +1,12 @@
 #include "libunit.h"
 
-void free_tests(t_unit_test **tests)
+void	free_tests(t_unit_test **tests)
 {
-	t_unit_test *current;
-	t_unit_test *next;
+	t_unit_test	*current;
+	t_unit_test	*next;
 
 	if (!tests || !*tests)
-		return;
-
+		return ;
 	current = *tests;
 	while (current)
 	{

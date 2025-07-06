@@ -15,7 +15,7 @@
 int	toupper_digit_test(void)
 {
 	char	c;
-	int		my_toupper);
+	int		my_toupper;
 
 	c = '6';
 	my_toupper = ft_toupper(c);
