@@ -1,0 +1,4 @@
+ISDIGIT: Basic test : [OK]
+ISDIGIT: Alpha input test : [OK]
+ISDIGIT: Non number test : [OK]
+ISDIGIT: 3/3 tests passed

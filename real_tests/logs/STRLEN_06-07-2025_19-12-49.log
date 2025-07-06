@@ -1,0 +1,4 @@
+STRLEN: Basic test : [OK]
+STRLEN: NULL test : [UNKNOWN]
+STRLEN: Bigger string test : [OK]
+STRLEN: 2/3 tests passed

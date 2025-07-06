@@ -2,7 +2,7 @@
 
 void	ft_clean(t_unit_test **tests, int log_fd, char *name)
 {
-	printf("%s failed\n", name);
+	ft_printf("%s failed\n", name);
 	free_tests(tests);
 	close(log_fd);
 	exit(EXIT_FAILURE);
@@ -72,14 +72,14 @@ void	ft_print_single_result(t_unit_test *test, int log_fd, int i)
 {
 	if (i == TEST_SUCCESS)
 	{
-		ft_printf("%s: %s : " GREEN "[OK]" RESET "\n",
+		printf("%s: %s : " GREEN "[OK]" RESET "\n",
 			test->fun_name, test->test_name);
 		dprintf(log_fd, "%s: %s : [OK]\n",
 			test->fun_name, test->test_name);
 	}
 	else if (i == TEST_FAILURE)
 	{
-		ft_printf("%s: %s : " RED "[KO]" RESET "\n",
+		printf("%s: %s : " RED "[KO]" RESET "\n",
 			test->fun_name, test->test_name);
 		dprintf(log_fd, "%s: %s : [KO]\n",
 			test->fun_name, test->test_name);

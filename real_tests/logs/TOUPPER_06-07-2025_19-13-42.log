@@ -1,0 +1,5 @@
+TOUPPER: Basic test : [OK]
+TOUPPER: Non alpha input test : [OK]
+TOUPPER: Uppercase test : [OK]
+TOUPPER: Digit test : [OK]
+TOUPPER: 4/4 tests passed

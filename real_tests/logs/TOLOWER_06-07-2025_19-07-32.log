@@ -1,0 +1,3 @@
+TOLOWER: Basic test : [OK]
+TOLOWER: Non alpha input test : [OK]
+TOLOWER: Lowercase test : [OK]

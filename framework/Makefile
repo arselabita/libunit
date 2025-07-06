@@ -1,26 +1,29 @@
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
-
+NAME = libunit.a
 SRC = free_tests.c \
 	  load_tests.c \
 	  launch_tests.c \
-	  utils.c \
-
+	  utils.c 
 OBJ = $(SRC:.c=.o)
-NAME = libunit
 
-all: ${NAME}
+CC = cc
+CFLAGS = -Wall -Werror -Wextra
+AR = ar rcs
+RM = rm -f
 
-${NAME}: ${OBJ}
-	${CC} ${CFLAGS} -o ${NAME} ${OBJ}
+all: $(NAME)
+
+$(NAME): $(OBJ)
+	$(AR) $@ $?
+
+%.o: %.c
+	$(CC) -c $(CFLAGS) $?	
 
 clean:
-	rm -f ${OBJ}
+	$(RM) $(OBJ)
 
 fclean: clean
-	rm -f ${NAME}
+	$(RM) $(NAME)
 
-re: fclean
-	make all
+re: fclean all
 
 .PHONY: all clean fclean re

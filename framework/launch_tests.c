@@ -4,7 +4,7 @@ static void	run_test_child_process(t_unit_test *test)
 {
 	int	result;
 
-	alarm(5);
+	alarm(2);
 	sleep(1);
 	result = test->function();
 	if (result == TEST_SUCCESS)

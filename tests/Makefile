@@ -12,21 +12,18 @@ SRC = main.c \
 	  06_sigill_test.c \
 	  07_sigpipe_test.c \
 	  08_sigabrt_test.c \
-	  09_sigalrm_test.c \
-	  ../framework/free_tests.c \
-	  ../framework/load_tests.c \
-	  ../framework/launch_tests.c \
-	  ../framework/utils.c
+	  09_sigalrm_test.c
 
 OBJ = $(SRC:.c=.o)
 NAME = libunit
 PRINTF = ../printf/libftprintf.a
 LIBFT = ../libft/libft.a
+FRAMEWORK = ../framework/libunit.a
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(PRINTF) $(LIBFT)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(PRINTF) $(LIBFT)
+$(NAME): $(OBJ) $(FRAMEWORK) $(PRINTF) $(LIBFT)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(FRAMEWORK) $(PRINTF) $(LIBFT)
 
 $(PRINTF):
 	make -C ../printf
@@ -34,18 +31,22 @@ $(PRINTF):
 $(LIBFT):
 	make -C ../libft
 
+$(FRAMEWORK):
+	make -C ../framework
+
 clean:
 	rm -f $(OBJ) $(OBJ_BONUS)
+	make -C ../framework clean
 	make -C ../printf clean
 	make -C ../libft clean
 
 fclean: clean
 	rm -f $(NAME) $(NAME_BONUS)
+	make -C ../framework fclean
 	make -C ../printf fclean
 	make -C ../libft fclean
 
-re: fclean
-	make all
+re: fclean all
 
 test: all
 	./$(NAME)
