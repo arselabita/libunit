@@ -1,6 +1,6 @@
 #include "libunit.h"
 
-char *generate_log_filename(const char *fun_name)
+static char *generate_log_filename(const char *fun_name)
 {
 	time_t now = time(NULL);
 	struct tm *t = localtime(&now);
@@ -23,15 +23,17 @@ char *generate_log_filename(const char *fun_name)
 int launch_tests(t_unit_test **tests)
 {
 	t_unit_test *current;
-	int pid; //please commit your changes or stash them before you switch branches.
+	int pid;
 	int count;
 	int success;
 	int status;
+	int code;
 	char *fun_name;
 	
 	count = 0;
 	status = 0;
 	success = 0;
+	code = 0;
 	pid = -1;
 	
 	if (!tests || !*tests)
@@ -68,7 +70,7 @@ int launch_tests(t_unit_test **tests)
 		else if (pid == 0)
 		{
 			alarm(5);
-			sleep(1); // Allow time for the alarm to be set
+			sleep(1);
 			int result = current->function();
 			if (result == TEST_SUCCESS)
 				exit(EXIT_SUCCESS);
@@ -117,12 +119,14 @@ int launch_tests(t_unit_test **tests)
 	{
 		ft_printf(GREEN "%d/%d" RESET " tests checked for %s\n", success, count, fun_name);
 		dprintf(log_fd, "%s: %d/%d tests passed\n", fun_name, success, count);
+		code = 0;
 	}
 	else
 	{
 		ft_printf(YELLOW "%d/%d" RESET " tests checked for %s\n", success, count, fun_name);
 		dprintf(log_fd, "%s: %d/%d tests passed\n", fun_name, success, count);
+		code = -1;
 	}
 	close(log_fd);
-	return (0);
+	return (code);
 }

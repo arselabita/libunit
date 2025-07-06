@@ -1,9 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   06_sigill_test.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abita <abita@student.42vienna.com>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/06 16:04:25 by abita             #+#    #+#             */
+/*   Updated: 2025/07/06 16:04:26 by abita            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "test.h"
 
-int SIGILL_test(void)
+int	sigill_test(void)
 {
-	// This test will intentionally cause a SIGILL (Illegal Instruction) error
-	// by executing an invalid instruction.
-	asm("ud2"); // This is an undefined instruction that will trigger SIGILL
-	return (TEST_SUCCESS); // This line will not be reached
+	asm("ud2");
+	return (TEST_SUCCESS);
 }

@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   02_null_test.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abita <abita@student.42vienna.com>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/06 18:06:56 by abita             #+#    #+#             */
+/*   Updated: 2025/07/06 18:06:57 by abita            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "strlen.h"
 
-int null_test(void)
+int	strlen_null_test(void)
 {
 	ft_strlen(NULL);
-	return (TEST_SUCCESS); // Should not reach here
+	return (TEST_SUCCESS);
 }

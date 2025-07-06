@@ -1,8 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abita <abita@student.42vienna.com>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/06 17:22:22 by abita             #+#    #+#             */
+/*   Updated: 2025/07/06 17:22:23 by abita            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
 #include <unistd.h>
 
-int main ()
+int	main(void)
 {
+	int	code;
+
+	code = 0;
 	strlen_launcher();
 	write(1, "\n", 1);
 	printf_launcher();
@@ -17,5 +32,5 @@ int main ()
 	write(1, "\n", 1);
 	toupper_launcher();
 	write(1, "\n", 1);
-	return (0);
+	return (code);
 }

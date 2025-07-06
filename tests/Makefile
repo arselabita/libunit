@@ -18,21 +18,14 @@ SRC = main.c \
 	  ../framework/launch_tests.c
 
 OBJ = $(SRC:.c=.o)
-OBJ_BONUS = $(SRC_BONUS:.c=.o)
-NAME = libunit
-NAME_BONUS = libunit_bonus
+NAME = libunit.a
 PRINTF = ../printf/libftprintf.a
 LIBFT = ../libft/libft.a
 
 all: $(NAME)
 
-bonus: $(NAME_BONUS)
-
 $(NAME): $(OBJ) $(PRINTF) $(LIBFT)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(PRINTF) $(LIBFT)
-
-$(NAME_BONUS): $(OBJ_BONUS) $(PRINTF) $(LIBFT)
-	$(CC) $(CFLAGS_BONUS) -o $(NAME_BONUS) $(OBJ_BONUS) $(PRINTF) $(LIBFT)
 
 $(PRINTF):
 	make -C ../printf
@@ -53,12 +46,9 @@ fclean: clean
 re: fclean
 	make all
 
-re_bonus: fclean
-	make bonus
-
 test: all
-	./libunit
+	./libunit.a
 
-.PHONY: all bonus clean fclean re re_bonus
+.PHONY: all bonus clean fclean re
 
 

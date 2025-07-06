@@ -1,26 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   05_sigfpe_test.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abita <abita@student.42vienna.com>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/06 16:02:31 by abita             #+#    #+#             */
+/*   Updated: 2025/07/06 16:02:32 by abita            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "test.h"
 
-int SIGFPE_test(void)
+int	sigfpe_test(void)
 {
-	// This test will intentionally cause a SIGFPE (Floating Point Exception) error
-	// by performing an invalid arithmetic operation, such as division by zero.
-	int numerator = 10;
-	int denominator = 0;
-	int result;
+	int	numerator;
+	int	denominator;
+	int	result;
 
-	// This will cause a floating point exception (SIGFPE)
-	result = numerator / denominator; // Division by zero
-
-	return (TEST_SUCCESS); // This line will not be reached
+	numerator = 10;
+	denominator = 0;
+	result = numerator / denominator;
+	return (TEST_SUCCESS);
 }
-
-// int SIGFPE_test(void)
-// {
-// 	int i;
-// 	int	b;
-
-// 	i = INT_MIN;
-// 	b = -1;
-// 	i = i / b;
-// 	return (0);
-// }

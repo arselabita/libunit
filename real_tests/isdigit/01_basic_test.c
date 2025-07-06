@@ -1,13 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   01_basic_test.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abita <abita@student.42vienna.com>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/06 17:16:43 by abita             #+#    #+#             */
+/*   Updated: 2025/07/06 17:16:46 by abita            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "isdigit.h"
 
-int isdigit_basic_test(void)
+int	isdigit_basic_test(void)
 {
-	int d = '1';
+	int	d;
+	int	my_isdigit;
 
-	int my_isdigit = ft_isdigit(d);
-
+	d = '1';
+	my_isdigit = ft_isdigit(d);
 	if (my_isdigit != 0)
-		return (TEST_SUCCESS); // Test passed
+		return (TEST_SUCCESS);
 	else
-		return (TEST_FAILURE); // Test failed
+		return (TEST_FAILURE);
 }

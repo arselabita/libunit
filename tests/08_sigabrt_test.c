@@ -1,9 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   08_sigabrt_test.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abita <abita@student.42vienna.com>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/06 16:07:21 by abita             #+#    #+#             */
+/*   Updated: 2025/07/06 16:07:23 by abita            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "test.h"
 
-int SIGABRT_test(void)
+int	sigabrt_test(void)
 {
-	// This test will intentionally cause a SIGABRT error
-	// by calling abort().
-	abort(); // This will trigger SIGABRT
-	return (TEST_SUCCESS); // This line will not be reached
+	abort();
+	return (TEST_SUCCESS);
 }
