@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_tests.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iguliyev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 20:35:12 by iguliyev          #+#    #+#             */
-/*   Updated: 2025/07/06 20:35:14 by iguliyev         ###   ########.fr       */
+/*   Created: 2023/09/13 22:27:38 by iguliyev          #+#    #+#             */
+/*   Updated: 2023/09/13 22:27:39 by iguliyev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libunit.h"
+#include "libft.h"
 
-void	free_tests(t_unit_test **tests)
+char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
 {
-	t_unit_test	*current;
-	t_unit_test	*next;
+	char			*ret;
+	unsigned int	i;
 
-	if (!tests || !*tests)
-		return ;
-	current = *tests;
-	while (current)
+	if (s == NULL)
+		return (0);
+	ret = malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (ret == NULL)
+		return (0);
+	i = 0;
+	while (s[i])
 	{
-		next = current->next;
-		free(current);
-		current = next;
+		ret[i] = f(i, s[i]);
+		i++;
 	}
-	*tests = NULL;
+	ret[i] = 0;
+	return (ret);
 }

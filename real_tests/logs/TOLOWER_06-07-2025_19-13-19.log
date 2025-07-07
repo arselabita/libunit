@@ -1,5 +1,0 @@
-TOLOWER: Basic test : [OK]
-TOLOWER: Non alpha input test : [OK]
-TOLOWER: Lowercase test : [OK]
-TOLOWER: Digit test : [OK]
-TOLOWER: 4/4 tests passed

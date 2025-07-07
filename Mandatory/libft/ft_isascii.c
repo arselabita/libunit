@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_tests.c                                       :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iguliyev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 20:35:12 by iguliyev          #+#    #+#             */
-/*   Updated: 2025/07/06 20:35:14 by iguliyev         ###   ########.fr       */
+/*   Created: 2023/09/13 22:21:32 by iguliyev          #+#    #+#             */
+/*   Updated: 2023/09/13 22:21:39 by iguliyev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libunit.h"
-
-void	free_tests(t_unit_test **tests)
+int	ft_isascii(int c)
 {
-	t_unit_test	*current;
-	t_unit_test	*next;
-
-	if (!tests || !*tests)
-		return ;
-	current = *tests;
-	while (current)
-	{
-		next = current->next;
-		free(current);
-		current = next;
-	}
-	*tests = NULL;
+	if (c >= 0 && c <= 127)
+		return (1);
+	return (0);
 }
+/*#include <stdio.h>
+
+int main ()
+{
+    printf ("%d", ft_isascii('m'));
+    return (0);
+}*/

@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_tests.c                                       :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iguliyev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 20:35:12 by iguliyev          #+#    #+#             */
-/*   Updated: 2025/07/06 20:35:14 by iguliyev         ###   ########.fr       */
+/*   Created: 2023/09/13 22:24:25 by iguliyev          #+#    #+#             */
+/*   Updated: 2023/09/13 22:24:30 by iguliyev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libunit.h"
+#include "libft.h"
 
-void	free_tests(t_unit_test **tests)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	t_unit_test	*current;
-	t_unit_test	*next;
+	const unsigned char	*s;
+	unsigned char		*d;
 
-	if (!tests || !*tests)
-		return ;
-	current = *tests;
-	while (current)
+	d = (unsigned char *)dest;
+	s = (unsigned char *)src;
+	if (!dest && !src)
+		return (dest);
+	if (dest < src)
+		return (ft_memcpy(dest, src, n));
+	while (n != 0)
 	{
-		next = current->next;
-		free(current);
-		current = next;
+		n--;
+		d[n] = s[n];
 	}
-	*tests = NULL;
+	return (dest);
 }

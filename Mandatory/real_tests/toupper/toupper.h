@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   04_sigbus_test.c                                   :+:      :+:    :+:   */
+/*   toupper.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abita <abita@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 18:10:21 by abita             #+#    #+#             */
-/*   Updated: 2025/07/06 18:10:23 by abita            ###   ########.fr       */
+/*   Created: 2025/07/06 18:04:37 by abita             #+#    #+#             */
+/*   Updated: 2025/07/06 18:04:38 by abita            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test.h"
+#ifndef TOUPPER_H
+# define TOUPPER_H
 
-int	sigbus_test(void)
-{
-	raise(SIGBUS);
-	return (TEST_SUCCESS);
-}
+# define TEST_SUCCESS 0
+# define TEST_FAILURE -1
+# include "../../libft/libft.h"
+# include "../../framework/libunit.h"
 
-// int	sigbus_test(void)
-// {
-// 	FILE	*f;
-// 	int		*m;
+int	toupper_launcher(void);
+int	toupper_basic_test(void);
+int	toupper_symbol_test(void);
+int	toupper_uppercase_test(void);
+int	toupper_digit_test(void);
 
-// 	f = tmpfile();
-// 	if (!f)
-// 		return (TEST_FAILURE);
-// 	m = mmap(0, 4, PROT_WRITE, MAP_PRIVATE, fileno(f), 0);
-// 	fclose(f);
-// 	*m = 0;
-// 	return (TEST_SUCCESS);
-// }
+#endif

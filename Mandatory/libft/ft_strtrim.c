@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_tests.c                                       :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iguliyev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 20:35:12 by iguliyev          #+#    #+#             */
-/*   Updated: 2025/07/06 20:35:14 by iguliyev         ###   ########.fr       */
+/*   Created: 2023/09/13 22:29:02 by iguliyev          #+#    #+#             */
+/*   Updated: 2023/09/13 22:29:04 by iguliyev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libunit.h"
+#include "libft.h"
 
-void	free_tests(t_unit_test **tests)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	t_unit_test	*current;
-	t_unit_test	*next;
+	char	*trimmed;
+	size_t	start;
+	size_t	end;
 
-	if (!tests || !*tests)
-		return ;
-	current = *tests;
-	while (current)
-	{
-		next = current->next;
-		free(current);
-		current = next;
-	}
-	*tests = NULL;
+	if (!s1)
+		return (NULL);
+	if (!set)
+		return (ft_strdup(s1));
+	end = ft_strlen(s1) - 1;
+	start = 0;
+	while (s1[start] && ft_strchr(set, s1[start]))
+		start++;
+	while (s1[end] && ft_strchr(set, s1[end]))
+		end--;
+	trimmed = ft_substr(s1, start, end - start + 1);
+	return (trimmed);
 }

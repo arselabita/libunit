@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_tests.c                                       :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iguliyev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 20:35:12 by iguliyev          #+#    #+#             */
-/*   Updated: 2025/07/06 20:35:14 by iguliyev         ###   ########.fr       */
+/*   Created: 2023/09/13 22:27:50 by iguliyev          #+#    #+#             */
+/*   Updated: 2023/09/13 22:27:52 by iguliyev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libunit.h"
+#include "libft.h"
 
-void	free_tests(t_unit_test **tests)
+size_t	ft_strlen(const char *s)
 {
-	t_unit_test	*current;
-	t_unit_test	*next;
+	size_t	i;
 
-	if (!tests || !*tests)
-		return ;
-	current = *tests;
-	while (current)
-	{
-		next = current->next;
-		free(current);
-		current = next;
-	}
-	*tests = NULL;
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }
+/*#include <stdio.h>
+
+int main ()
+{
+    char a[] = "abce";
+    printf("%zu", ft_strlen (a));
+    return (0);
+}*/

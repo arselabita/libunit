@@ -17,17 +17,3 @@ int	sigbus_test(void)
 	raise(SIGBUS);
 	return (TEST_SUCCESS);
 }
-
-// int	sigbus_test(void)
-// {
-// 	FILE	*f;
-// 	int		*m;
-
-// 	f = tmpfile();
-// 	if (!f)
-// 		return (TEST_FAILURE);
-// 	m = mmap(0, 4, PROT_WRITE, MAP_PRIVATE, fileno(f), 0);
-// 	fclose(f);
-// 	*m = 0;
-// 	return (TEST_SUCCESS);
-// }

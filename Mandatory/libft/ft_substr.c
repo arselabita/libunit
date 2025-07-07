@@ -1,30 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_tests.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iguliyev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 20:35:12 by iguliyev          #+#    #+#             */
-/*   Updated: 2025/07/06 20:35:14 by iguliyev         ###   ########.fr       */
+/*   Created: 2023/09/13 22:29:38 by iguliyev          #+#    #+#             */
+/*   Updated: 2023/09/13 22:29:40 by iguliyev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libunit.h"
+#include "libft.h"
 
-void	free_tests(t_unit_test **tests)
+char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
-	t_unit_test	*current;
-	t_unit_test	*next;
+	size_t	i;
+	char	*m;
 
-	if (!tests || !*tests)
-		return ;
-	current = *tests;
-	while (current)
+	i = 0;
+	if (!s)
+		return (NULL);
+	if (start >= ft_strlen(s))
+		return (ft_strdup(""));
+	if (len > ft_strlen(s) - start)
+		len = ft_strlen(s) - start;
+	m = (char *)malloc((len + 1) * sizeof(char));
+	if (!m)
+		return (NULL);
+	while (len > 0)
 	{
-		next = current->next;
-		free(current);
-		current = next;
+		m[i] = s[start];
+		i++;
+		start++;
+		len--;
 	}
-	*tests = NULL;
+	m[i] = '\0';
+	return (m);
 }

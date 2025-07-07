@@ -1,30 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_tests.c                                       :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iguliyev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 20:35:12 by iguliyev          #+#    #+#             */
-/*   Updated: 2025/07/06 20:35:14 by iguliyev         ###   ########.fr       */
+/*   Created: 2023/09/13 22:25:03 by iguliyev          #+#    #+#             */
+/*   Updated: 2023/09/13 22:25:06 by iguliyev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libunit.h"
+#include "libft.h"
 
-void	free_tests(t_unit_test **tests)
+void	ft_putchar_fd(char c, int fd)
 {
-	t_unit_test	*current;
-	t_unit_test	*next;
-
-	if (!tests || !*tests)
-		return ;
-	current = *tests;
-	while (current)
-	{
-		next = current->next;
-		free(current);
-		current = next;
-	}
-	*tests = NULL;
+	write(fd, &c, 1);
 }

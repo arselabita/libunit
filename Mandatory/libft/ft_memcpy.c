@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_tests.c                                       :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iguliyev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 20:35:12 by iguliyev          #+#    #+#             */
-/*   Updated: 2025/07/06 20:35:14 by iguliyev         ###   ########.fr       */
+/*   Created: 2023/09/13 22:24:09 by iguliyev          #+#    #+#             */
+/*   Updated: 2023/09/13 22:24:11 by iguliyev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libunit.h"
+#include "libft.h"
 
-void	free_tests(t_unit_test **tests)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	t_unit_test	*current;
-	t_unit_test	*next;
+	unsigned char		*d;
+	const unsigned char	*s;
 
-	if (!tests || !*tests)
-		return ;
-	current = *tests;
-	while (current)
-	{
-		next = current->next;
-		free(current);
-		current = next;
-	}
-	*tests = NULL;
+	d = (unsigned char *)dest;
+	s = (const unsigned char *)src;
+	if (!dest && !src)
+		return (0);
+	while (n--)
+		*d++ = *s++;
+	return (dest);
 }

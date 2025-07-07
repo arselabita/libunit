@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_tests.c                                       :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iguliyev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 20:35:12 by iguliyev          #+#    #+#             */
-/*   Updated: 2025/07/06 20:35:14 by iguliyev         ###   ########.fr       */
+/*   Created: 2023/09/25 20:57:46 by iguliyev          #+#    #+#             */
+/*   Updated: 2023/09/25 20:57:52 by iguliyev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libunit.h"
+#include "libft.h"
 
-void	free_tests(t_unit_test **tests)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	t_unit_test	*current;
-	t_unit_test	*next;
+	t_list	*head;
+	t_list	*tmp;
 
-	if (!tests || !*tests)
-		return ;
-	current = *tests;
-	while (current)
+	head = *lst;
+	while (head)
 	{
-		next = current->next;
-		free(current);
-		current = next;
+		tmp = head -> next;
+		(*del)(head -> content);
+		free(head);
+		head = tmp;
 	}
-	*tests = NULL;
+	*lst = NULL;
 }

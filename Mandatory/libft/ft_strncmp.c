@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_tests.c                                       :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iguliyev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 20:35:12 by iguliyev          #+#    #+#             */
-/*   Updated: 2025/07/06 20:35:14 by iguliyev         ###   ########.fr       */
+/*   Created: 2023/09/13 22:28:26 by iguliyev          #+#    #+#             */
+/*   Updated: 2023/09/13 22:28:29 by iguliyev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libunit.h"
+#include "libft.h"
 
-void	free_tests(t_unit_test **tests)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	t_unit_test	*current;
-	t_unit_test	*next;
+	unsigned int	i;
+	unsigned char	*d1;
+	unsigned char	*d2;
 
-	if (!tests || !*tests)
-		return ;
-	current = *tests;
-	while (current)
+	d1 = (unsigned char *)s1;
+	d2 = (unsigned char *)s2;
+	i = 0;
+	while ((d1[i] || d2[i]) && i < n)
 	{
-		next = current->next;
-		free(current);
-		current = next;
+		if (d1[i] != d2[i])
+			return (d1[i] - d2[i]);
+		i++;
 	}
-	*tests = NULL;
+	return (0);
 }

@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_tests.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iguliyev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 20:35:12 by iguliyev          #+#    #+#             */
-/*   Updated: 2025/07/06 20:35:14 by iguliyev         ###   ########.fr       */
+/*   Created: 2023/09/13 22:26:14 by iguliyev          #+#    #+#             */
+/*   Updated: 2023/09/26 17:56:00 by iguliyev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libunit.h"
+#include "libft.h"
 
-void	free_tests(t_unit_test **tests)
+char	*ft_strchr(const char *s, int c)
 {
-	t_unit_test	*current;
-	t_unit_test	*next;
+	int		i;
+	char	*p1;
+	char	p2;
 
-	if (!tests || !*tests)
-		return ;
-	current = *tests;
-	while (current)
+	i = 0;
+	p1 = (char *)s;
+	p2 = (char)c;
+	while (s[i])
 	{
-		next = current->next;
-		free(current);
-		current = next;
+		if (s[i] == p2)
+			return (p1);
+		i++;
+		p1++;
 	}
-	*tests = NULL;
+	if (s[i] == p2)
+		return (p1);
+	return (NULL);
 }

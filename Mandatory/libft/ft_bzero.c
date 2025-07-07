@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_tests.c                                       :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iguliyev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 20:35:12 by iguliyev          #+#    #+#             */
-/*   Updated: 2025/07/06 20:35:14 by iguliyev         ###   ########.fr       */
+/*   Created: 2023/09/13 22:18:35 by iguliyev          #+#    #+#             */
+/*   Updated: 2023/09/13 22:18:46 by iguliyev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libunit.h"
+#include "libft.h"
 
-void	free_tests(t_unit_test **tests)
+void	ft_bzero(void *s, size_t n)
 {
-	t_unit_test	*current;
-	t_unit_test	*next;
+	unsigned char	*p;
+	size_t			i;
 
-	if (!tests || !*tests)
-		return ;
-	current = *tests;
-	while (current)
+	i = 0;
+	p = s;
+	while (n > i)
 	{
-		next = current->next;
-		free(current);
-		current = next;
+		p[i] = 0;
+		i++;
 	}
-	*tests = NULL;
 }
+/*#include<stdio.h>
+int main ()
+{
+    char a [30];
+    ft_bzero(a, 20);
+    printf("%s", a);
+    return (0);
+}*/

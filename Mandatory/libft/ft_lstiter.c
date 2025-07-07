@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_tests.c                                       :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iguliyev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 20:35:12 by iguliyev          #+#    #+#             */
-/*   Updated: 2025/07/06 20:35:14 by iguliyev         ###   ########.fr       */
+/*   Created: 2023/09/25 20:58:23 by iguliyev          #+#    #+#             */
+/*   Updated: 2023/09/25 20:58:29 by iguliyev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libunit.h"
+#include "libft.h"
 
-void	free_tests(t_unit_test **tests)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	t_unit_test	*current;
-	t_unit_test	*next;
-
-	if (!tests || !*tests)
-		return ;
-	current = *tests;
-	while (current)
+	while (lst)
 	{
-		next = current->next;
-		free(current);
-		current = next;
+		(*f)(lst -> content);
+		lst = lst -> next;
 	}
-	*tests = NULL;
 }

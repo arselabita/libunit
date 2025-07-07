@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_tests.c                                       :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iguliyev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 20:35:12 by iguliyev          #+#    #+#             */
-/*   Updated: 2025/07/06 20:35:14 by iguliyev         ###   ########.fr       */
+/*   Created: 2023/10/10 17:54:05 by iguliyev          #+#    #+#             */
+/*   Updated: 2023/10/10 17:54:15 by iguliyev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libunit.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-void	free_tests(t_unit_test **tests)
-{
-	t_unit_test	*current;
-	t_unit_test	*next;
+# include <stdarg.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <stddef.h>
 
-	if (!tests || !*tests)
-		return ;
-	current = *tests;
-	while (current)
-	{
-		next = current->next;
-		free(current);
-		current = next;
-	}
-	*tests = NULL;
-}
+int	ft_printf(const char *str, ...);
+int	ft_putchar(char c);
+int	ft_putstr(char *str);
+int	ft_putnbr(int n);
+int	ft_unsigned(unsigned int n);
+int	ft_puthex(unsigned int n, char format);
+int	ft_putptr(void *p);
+
+#endif

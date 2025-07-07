@@ -1,30 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_tests.c                                       :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iguliyev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 20:35:12 by iguliyev          #+#    #+#             */
-/*   Updated: 2025/07/06 20:35:14 by iguliyev         ###   ########.fr       */
+/*   Created: 2023/09/13 22:28:37 by iguliyev          #+#    #+#             */
+/*   Updated: 2023/09/26 17:55:12 by iguliyev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libunit.h"
+#include "libft.h"
 
-void	free_tests(t_unit_test **tests)
+char	*ft_strrchr(const char *s, int c)
 {
-	t_unit_test	*current;
-	t_unit_test	*next;
+	int		i;
+	char	*p;
+	char	uc;
 
-	if (!tests || !*tests)
-		return ;
-	current = *tests;
-	while (current)
+	p = (char *)s;
+	uc = (char)c;
+	i = 0;
+	while (p[i])
+		i++;
+	while (i >= 0)
 	{
-		next = current->next;
-		free(current);
-		current = next;
+		if (p[i] == uc)
+			return (p + i);
+		i--;
 	}
-	*tests = NULL;
+	return (NULL);
 }
+
+/*#include <stdio.h>
+int main ()
+{
+    char a[] = "asssbcdd";
+    char b = 'b';
+    printf("%s", ft_strrchr(a, b));
+}*/

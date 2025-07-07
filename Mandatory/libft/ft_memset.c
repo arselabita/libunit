@@ -1,30 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_tests.c                                       :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iguliyev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 20:35:12 by iguliyev          #+#    #+#             */
-/*   Updated: 2025/07/06 20:35:14 by iguliyev         ###   ########.fr       */
+/*   Created: 2023/09/13 22:24:41 by iguliyev          #+#    #+#             */
+/*   Updated: 2023/09/13 22:24:43 by iguliyev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libunit.h"
+#include "libft.h"
 
-void	free_tests(t_unit_test **tests)
+void	*ft_memset(void *s, int c, size_t n)
 {
-	t_unit_test	*current;
-	t_unit_test	*next;
+	unsigned char	*p;
+	unsigned char	uc;
+	size_t			i;
 
-	if (!tests || !*tests)
-		return ;
-	current = *tests;
-	while (current)
+	i = 0;
+	p = s;
+	uc = (unsigned char)c;
+	while (n > i)
 	{
-		next = current->next;
-		free(current);
-		current = next;
+		p[i] = uc;
+		i++;
 	}
-	*tests = NULL;
+	return (s);
 }
+/*#include<stdio.h>
+int main ()
+{
+    char a [30];
+    ft_memset(a, 'a', 20);
+    printf("%s", a);
+    return (0);
+}*/

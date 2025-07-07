@@ -21,9 +21,6 @@ int	main(void)
 	if (strlen_launcher() == -1)
 		code = 1;
 	write(1, "\n", 1);
-	if (printf_launcher() == -1)
-		code = 1;
-	write(1, "\n", 1);
 	if (atoi_launcher() == -1)
 		code = 1;
 	write(1, "\n", 1);
@@ -38,6 +35,5 @@ int	main(void)
 	write(1, "\n", 1);
 	if (toupper_launcher() == -1)
 		code = 1;
-	write(1, "\n", 1);
 	return (code);
 }

@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   04_sigbus_test.c                                   :+:      :+:    :+:   */
+/*   test.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abita <abita@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 18:10:21 by abita             #+#    #+#             */
-/*   Updated: 2025/07/06 18:10:23 by abita            ###   ########.fr       */
+/*   Created: 2025/07/06 16:11:45 by abita             #+#    #+#             */
+/*   Updated: 2025/07/06 16:11:52 by abita            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test.h"
+#ifndef TEST_H
+# define TEST_H
 
-int	sigbus_test(void)
-{
-	raise(SIGBUS);
-	return (TEST_SUCCESS);
-}
+# include "../framework/libunit.h"
+# include "../libft/libft.h"
+# include <string.h>
+# include <signal.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <sys/mman.h>
+# include <limits.h>
 
-// int	sigbus_test(void)
-// {
-// 	FILE	*f;
-// 	int		*m;
+int	ok_test(void);
+int	ko_test(void);
+int	sigsegv_test(void);
+int	sigbus_test(void);
+int	test_launcher(void);
 
-// 	f = tmpfile();
-// 	if (!f)
-// 		return (TEST_FAILURE);
-// 	m = mmap(0, 4, PROT_WRITE, MAP_PRIVATE, fileno(f), 0);
-// 	fclose(f);
-// 	*m = 0;
-// 	return (TEST_SUCCESS);
-// }
+#endif

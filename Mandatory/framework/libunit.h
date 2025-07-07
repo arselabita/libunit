@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: iguliyev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 20:35:20 by iguliyev          #+#    #+#             */
-/*   Updated: 2025/07/06 20:35:24 by iguliyev         ###   ########.fr       */
+/*   Created: 2025/07/06 20:34:12 by iguliyev          #+#    #+#             */
+/*   Updated: 2025/07/06 20:34:15 by iguliyev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <sys/wait.h>
 # include <signal.h>
 # include <fcntl.h>
-# include <time.h>
 # include "../libft/libft.h"
 # include "../printf/ft_printf.h"
 
@@ -44,9 +43,8 @@ void	load_tests(t_unit_test **tests, char *fun_name,
 			char *test_name, int (*function)(void));
 int		launch_tests(t_unit_test **tests);
 void	free_tests(t_unit_test **tests);
-void	ft_clean(t_unit_test **tests, int log_fd, char *name);
-int		open_log_file(t_unit_test **tests);
-int		ft_print_results(int count, int success, char *fun_name, int log_fd);
-void	ft_print_single_result(t_unit_test *test, int log_fd, int i);
+void	ft_clean(t_unit_test **tests, char *name);
+int		ft_print_results(int count, int success, char *fun_name);
+void	ft_print_single_result(t_unit_test *test, int i);
 
 #endif

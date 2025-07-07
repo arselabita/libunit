@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_tests.c                                       :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iguliyev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 20:35:12 by iguliyev          #+#    #+#             */
-/*   Updated: 2025/07/06 20:35:14 by iguliyev         ###   ########.fr       */
+/*   Created: 2023/09/13 22:25:47 by iguliyev          #+#    #+#             */
+/*   Updated: 2023/09/13 22:25:49 by iguliyev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libunit.h"
+#include "libft.h"
 
-void	free_tests(t_unit_test **tests)
+void	ft_putstr_fd(char *s, int fd)
 {
-	t_unit_test	*current;
-	t_unit_test	*next;
+	long	i;
 
-	if (!tests || !*tests)
-		return ;
-	current = *tests;
-	while (current)
+	i = 0;
+	if (s == NULL)
+		return ((void) NULL);
+	while (s[i])
 	{
-		next = current->next;
-		free(current);
-		current = next;
+		write(fd, &s[i], 1);
+		i++;
 	}
-	*tests = NULL;
 }
+/*#include<stdio.h>
+
+int main ()
+{
+    char a[] = "abc";
+    ft_putstr_fd(a, 1);
+    return (0);
+}*/

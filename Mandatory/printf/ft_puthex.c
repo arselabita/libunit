@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_tests.c                                       :+:      :+:    :+:   */
+/*   ft_puthex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iguliyev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 20:35:12 by iguliyev          #+#    #+#             */
-/*   Updated: 2025/07/06 20:35:14 by iguliyev         ###   ########.fr       */
+/*   Created: 2023/10/10 17:54:32 by iguliyev          #+#    #+#             */
+/*   Updated: 2023/10/10 17:54:41 by iguliyev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libunit.h"
+#include "ft_printf.h"
 
-void	free_tests(t_unit_test **tests)
+int	ft_puthex(unsigned int n, char format)
 {
-	t_unit_test	*current;
-	t_unit_test	*next;
+	int	result;
 
-	if (!tests || !*tests)
-		return ;
-	current = *tests;
-	while (current)
+	result = 0;
+	if (n <= 15)
 	{
-		next = current->next;
-		free(current);
-		current = next;
+		if (format == 'x')
+			result = result + ft_putchar("0123456789abcdef"[n]);
+		else
+			result = result + ft_putchar("0123456789ABCDEF"[n]);
 	}
-	*tests = NULL;
+	else
+	{
+		result = result + ft_puthex(n / 16, format);
+		result = result + ft_puthex(n % 16, format);
+	}
+	return (result);
 }

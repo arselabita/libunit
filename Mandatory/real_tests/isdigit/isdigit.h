@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   04_sigbus_test.c                                   :+:      :+:    :+:   */
+/*   isdigit.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abita <abita@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 18:10:21 by abita             #+#    #+#             */
-/*   Updated: 2025/07/06 18:10:23 by abita            ###   ########.fr       */
+/*   Created: 2025/07/06 17:21:04 by abita             #+#    #+#             */
+/*   Updated: 2025/07/06 17:21:05 by abita            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test.h"
+#ifndef ISDIGIT_H
+# define ISDIGIT_H
+# define TEST_SUCCESS 0
+# define TEST_FAILURE -1
 
-int	sigbus_test(void)
-{
-	raise(SIGBUS);
-	return (TEST_SUCCESS);
-}
+# include "../../libft/libft.h"
+# include "../../framework/libunit.h"
 
-// int	sigbus_test(void)
-// {
-// 	FILE	*f;
-// 	int		*m;
+int	isdigit_launcher(void);
+int	isdigit_basic_test(void);
+int	alpha_input_test(void);
+int	non_number_input_test(void);
 
-// 	f = tmpfile();
-// 	if (!f)
-// 		return (TEST_FAILURE);
-// 	m = mmap(0, 4, PROT_WRITE, MAP_PRIVATE, fileno(f), 0);
-// 	fclose(f);
-// 	*m = 0;
-// 	return (TEST_SUCCESS);
-// }
+#endif

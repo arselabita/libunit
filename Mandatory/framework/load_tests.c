@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_tests.c                                       :+:      :+:    :+:   */
+/*   load_tests.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iguliyev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 20:35:12 by iguliyev          #+#    #+#             */
-/*   Updated: 2025/07/06 20:35:14 by iguliyev         ###   ########.fr       */
+/*   Created: 2025/07/06 20:34:38 by iguliyev          #+#    #+#             */
+/*   Updated: 2025/07/06 20:34:42 by iguliyev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libunit.h"
 
-void	free_tests(t_unit_test **tests)
+void	load_tests(t_unit_test **tests, char *fun_name,
+					char *test_name, int (*function)(void))
 {
+	t_unit_test	*new_test;
 	t_unit_test	*current;
-	t_unit_test	*next;
 
-	if (!tests || !*tests)
+	new_test = malloc(sizeof(t_unit_test));
+	if (!new_test)
 		return ;
-	current = *tests;
-	while (current)
+	new_test->fun_name = fun_name;
+	new_test->test_name = test_name;
+	new_test->function = function;
+	new_test->next = NULL;
+	if (*tests == NULL)
 	{
-		next = current->next;
-		free(current);
-		current = next;
+		*tests = new_test;
+		return ;
 	}
-	*tests = NULL;
+	current = *tests;
+	while (current->next != NULL)
+		current = current->next;
+	current->next = new_test;
 }

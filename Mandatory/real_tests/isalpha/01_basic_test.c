@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   04_sigbus_test.c                                   :+:      :+:    :+:   */
+/*   01_basic_test.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abita <abita@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 18:10:21 by abita             #+#    #+#             */
-/*   Updated: 2025/07/06 18:10:23 by abita            ###   ########.fr       */
+/*   Created: 2025/07/06 16:25:38 by abita             #+#    #+#             */
+/*   Updated: 2025/07/06 16:27:28 by abita            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test.h"
+#include "isalpha.h"
 
-int	sigbus_test(void)
+int	isalpha_basic_test(void)
 {
-	raise(SIGBUS);
-	return (TEST_SUCCESS);
+	char	c;
+	int		my_isalpha;
+
+	c = 'a';
+	my_isalpha = ft_isalpha(c);
+	if (my_isalpha != 0)
+		return (TEST_SUCCESS);
+	else
+		return (TEST_FAILURE);
 }
-
-// int	sigbus_test(void)
-// {
-// 	FILE	*f;
-// 	int		*m;
-
-// 	f = tmpfile();
-// 	if (!f)
-// 		return (TEST_FAILURE);
-// 	m = mmap(0, 4, PROT_WRITE, MAP_PRIVATE, fileno(f), 0);
-// 	fclose(f);
-// 	*m = 0;
-// 	return (TEST_SUCCESS);
-// }

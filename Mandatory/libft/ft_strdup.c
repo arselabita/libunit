@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_tests.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iguliyev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 20:35:12 by iguliyev          #+#    #+#             */
-/*   Updated: 2025/07/06 20:35:14 by iguliyev         ###   ########.fr       */
+/*   Created: 2023/09/13 22:26:27 by iguliyev          #+#    #+#             */
+/*   Updated: 2023/09/13 22:26:30 by iguliyev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libunit.h"
+#include "libft.h"
 
-void	free_tests(t_unit_test **tests)
+char	*ft_strdup(const char *src)
 {
-	t_unit_test	*current;
-	t_unit_test	*next;
+	char	*dest;
+	int		i;
 
-	if (!tests || !*tests)
-		return ;
-	current = *tests;
-	while (current)
+	i = 0;
+	dest = (char *)malloc((ft_strlen(src) + 1) * sizeof(char));
+	if (dest == NULL)
+		return (0);
+	while (src[i])
 	{
-		next = current->next;
-		free(current);
-		current = next;
+		dest[i] = src[i];
+		i++;
 	}
-	*tests = NULL;
+	dest[i] = '\0';
+	return (dest);
 }

@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_tests.c                                       :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iguliyev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 20:35:12 by iguliyev          #+#    #+#             */
-/*   Updated: 2025/07/06 20:35:14 by iguliyev         ###   ########.fr       */
+/*   Created: 2023/09/10 21:28:06 by iguliyev          #+#    #+#             */
+/*   Updated: 2023/09/10 21:28:28 by iguliyev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libunit.h"
+#include "libft.h"
 
-void	free_tests(t_unit_test **tests)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	t_unit_test	*current;
-	t_unit_test	*next;
+	size_t	i;
+	size_t	j;
 
-	if (!tests || !*tests)
-		return ;
-	current = *tests;
-	while (current)
+	i = 0;
+	j = 0;
+	while (dst[i] && i < size)
+		i++;
+	while (src[j] && (i + j + 1) < size)
 	{
-		next = current->next;
-		free(current);
-		current = next;
+		dst[i + j] = src[j];
+		j++;
 	}
-	*tests = NULL;
+	if (i < size)
+		dst[i + j] = '\0';
+	return (i + ft_strlen(src));
 }

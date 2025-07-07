@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_tests.c                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iguliyev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 20:35:12 by iguliyev          #+#    #+#             */
-/*   Updated: 2025/07/06 20:35:14 by iguliyev         ###   ########.fr       */
+/*   Created: 2023/09/13 22:28:50 by iguliyev          #+#    #+#             */
+/*   Updated: 2023/09/13 22:28:52 by iguliyev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libunit.h"
+#include "libft.h"
 
-void	free_tests(t_unit_test **tests)
+char	*ft_strnstr(const char *big_one, const char *small_one, size_t len)
 {
-	t_unit_test	*current;
-	t_unit_test	*next;
+	size_t	n;
 
-	if (!tests || !*tests)
-		return ;
-	current = *tests;
-	while (current)
+	if (*small_one == 0)
+		return ((char *)big_one);
+	n = ft_strlen(small_one);
+	while (*big_one && n <= len)
 	{
-		next = current->next;
-		free(current);
-		current = next;
+		if (*big_one == *small_one && ft_strncmp(big_one, small_one, n) == 0)
+			return ((char *)big_one);
+		big_one++;
+		len--;
 	}
-	*tests = NULL;
+	return (NULL);
 }

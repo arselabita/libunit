@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_tests.c                                       :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iguliyev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 20:35:12 by iguliyev          #+#    #+#             */
-/*   Updated: 2025/07/06 20:35:14 by iguliyev         ###   ########.fr       */
+/*   Created: 2023/09/13 22:26:38 by iguliyev          #+#    #+#             */
+/*   Updated: 2023/09/13 22:26:40 by iguliyev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libunit.h"
+#include "libft.h"
 
-void	free_tests(t_unit_test **tests)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	t_unit_test	*current;
-	t_unit_test	*next;
+	unsigned int	i;
 
-	if (!tests || !*tests)
+	i = 0;
+	if (!s)
 		return ;
-	current = *tests;
-	while (current)
+	while (s[i])
 	{
-		next = current->next;
-		free(current);
-		current = next;
+		(*f)(i, (s + i));
+		i++;
 	}
-	*tests = NULL;
 }

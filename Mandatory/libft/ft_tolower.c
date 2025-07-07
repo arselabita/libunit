@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_tests.c                                       :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iguliyev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 20:35:12 by iguliyev          #+#    #+#             */
-/*   Updated: 2025/07/06 20:35:14 by iguliyev         ###   ########.fr       */
+/*   Created: 2023/09/13 22:29:16 by iguliyev          #+#    #+#             */
+/*   Updated: 2023/09/13 22:29:18 by iguliyev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libunit.h"
-
-void	free_tests(t_unit_test **tests)
+int	ft_tolower(int c)
 {
-	t_unit_test	*current;
-	t_unit_test	*next;
-
-	if (!tests || !*tests)
-		return ;
-	current = *tests;
-	while (current)
-	{
-		next = current->next;
-		free(current);
-		current = next;
-	}
-	*tests = NULL;
+	if (c >= 'A' && c <= 'Z')
+		c = c - 'A' + 'a';
+	return (c);
 }
+/*#include<stdio.h>
+#include <ctype.h>
+
+int main()
+{
+    char ch = 'H';
+
+    printf("%c\n", tolower(ch));
+    printf("%c\n", ft_tolower(ch));
+}*/
